@@ -3,27 +3,37 @@
 namespace App\Events;
 
 use App\Models\User;
-use App\Models\Lesson;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 
-class LessonWatched
+class BadgeUnlocked
 {
     use Dispatchable, SerializesModels;
 
-    public $lesson;
+    /**
+     * Badge name
+     *
+     * @var string
+     */
+    public $badge_name;
+
+    /**
+     * User
+     *
+     * @var User
+     */
     public $user;
 
     /**
      * Create a new event instance.
      *
-     * @param Lesson $lesson
+     * @param string $badge_name
      * @param User $user
      * @return void
      */
-    public function __construct(Lesson $lesson, User $user)
+    public function __construct(string $badge_name, User $user)
     {
-        $this->lesson = $lesson;
+        $this->badge_name = $badge_name;
         $this->user = $user;
     }
 }
